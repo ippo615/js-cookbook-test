@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>js Cookbook Test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <style type="text/css">
+          pre { font-size: 0.8em; line-height: 1;}
+          .example {border-bottom: 1px solid #000; padding: 1px 8px;}
+          .test {border-bottom: 1px solid #000; padding: 1px 8px;}
+          .hide {display: none;}
+          .show {display: block;}
+          .pass {background: #efe;}
+          .fail {background: #fee;}
+          h2 {font-size: 2em;}
+        </style>
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">js Cookbook Test</h1>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+                <article id="test-results"></article>
+
+                <aside>
+                    <h3>Like it?</h3>
+                    <p>Get <a href="https://github.com/ippo615/js-cookbook-test">js cookbook test</a> on github.</p>
+                </aside>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>About</h3>
+                <p><a href="https://github.com/ippo615/js-cookbook-test">js cookbook test</a> was created by Andrew Ippoliti. You can clone it from github:</p>
+                <pre>git clone https://github.com/ippo615/js-cookbook-test.git</pre>
+                <p>It is released under the MIT license.</p>
+                <p>This page was styled with <a href="http://html5boilerplate.com/">http://html5boilerplate.com/</a></p>
+            </footer>
+        </div>
+
+<script type="text/javascript" src="js-cookbook-test.js"></script>
+<script type="text/javascript">
+tester.group(
+  'examples',
+  'Using js Cookbook Tests',
+
+  'Cookbook tests are my way of showing examples AND running tests '+
+  'at the same time. They let you make a nice test suite that can '+
+  'also serve as sample code for your readers to learn from. '+
+  'I found that another testing tool hides your code and does not '+
+  'provide an easy way to explain your tests in a detialed manner. '+
+  'Hopefully, this library fixes that. Keep reading to see it in action.',
+
+  document.getElementById('test-results')
+);
+
+tester.no_run(
+  'Grouping',
+
+  'The first step in making a cookbook test is to make a "group". '+
+  'You can make a group with `tester.group(...)`. In the following '+
+  'example we create a group. The group serves as a container for '+
+  'the tests and examples that you add to it. ',
+
+  function(){
+
+    tester.group(
+      'group-id',
+      'group-title',
+      'group-long-description',
+      document.getElementById('group-parent-node-id')
+    );
+
+  }
+);
+
+tester.no_run(
+  'Simple Example',
+
+  'An example is code that is shown and run but not checked '+
+  'for any sort of validity. Use `tester.example` to append '+
+  'an example to the current group. You can specifiy a title '+
+  'for the exampe, a long description of the example, and a '+
+  'function which is the code of the example.',
+
+  function(){
+
+    tester.example(
+      'Adding in Javascript',
+
+      'You can use the "+" operator to add two numbers togeter. '+
+      'Additionally you can subtract with "-".',
+
+      function(){
+        var x = 10,
+            y = 22;
+
+        return y-x + 1;
+      }
+    );
+
+  }
+);
+
+tester.no_run(
+  'Not Running Code',
+
+  'Sometimes you do not want to run the code you are showing. '+
+  'For example, if I ran the samples I am showing then I would '+
+  'interfear with the rest of the page. You can use '+
+  '`tester.no_run` to show but not run an example. ',
+
+  function(){
+
+    tester.no_run(
+      'Messing up my dom',
+
+      'If this example ran, then the data structure for my cookbook '+
+      'results would be messed up.',
+
+      function(){
+        tester.group(
+          'group-id',
+          'group-title',
+          'group-long-description',
+          document.getElementById('group-parent-node-id')
+        );
+      }
+    );
+
+  }
+);
+
+tester.no_run(
+  'Testing Code',
+
+  'Often you will want to run some code and verify that it returns '+
+  'a specific value. `tester.test` lets you do that. It accepts '+
+  'a name for the test, a description of the code, a function that '+
+  'returns the result you want to verify, and an '+
+  'object/string/number/regex/function/etc.. that is the result '+
+  'you expect to get.',
+
+  function(){
+
+    tester.test(
+      'Can I Add Negative Numbers?',
+
+      'I do not know if js can handle negative numbers, I better '+
+      'investigate.',
+
+      function(){
+        return 17 + -2;
+      },
+
+      15
+    );
+
+  }
+);
+
+
+tester.group(
+  'basic_js',
+
+  'Basic JavaScript',
+
+  'These tests just show some basic features of JavaScript. '+
+  'I thought it may be easier/clearer for you to look at the '+
+  'source that generated these simple examples...',
+
+  document.getElementById('test-results')
+);
+
+tester.test(
+  'Variable Declaration',
+
+  'You can create a variable using the var keyword but '+
+  'be warned that it is "undefined" until you assign '+
+  'a value to it.',
+
+  function(){
+    var x;
+    return x;
+  },
+
+  undefined
+);
+
+tester.test(
+  'Variable Declaration and Setting',
+
+  'You can create a variable using the var keyword and '+
+  'immediately assign a value to it.',
+
+  function(){
+    var x = 22;
+    return x;
+  },
+
+  22
+);
+
+tester.test(
+  'Errors in code',
+
+  'If you have run-time errors in your code then the tester '+
+  'will try its best to inform you of them.',
+
+  function(){
+    var y = 22;
+    return x;
+  },
+
+  22
+);
+
+tester.test(
+  'Checking arrays',
+
+  'You can append an element to an array using '+
+  'the `push` method.',
+
+  function(){
+    var x = [0,1,2];
+    x.push(3);
+    return x;
+  },
+
+  [0,1,2,3]
+);
+
+tester.test(
+  'Checking strings',
+
+  'The `+` operator can add number and append strings.',
+
+  function(){
+    var x  = "hello ";
+    x += "world!";
+    return x;
+  },
+
+  "hello world!"
+);
+
+tester.test(
+  'Checking objects',
+
+  'Objects are essentially collections of key-value pairs. '+
+  'They can represent many complex ideas.',
+
+  function(){
+    var box  = {
+      width: 32,
+      height: 12
+    };
+    return box;
+  },
+
+  {width:32,height:12}
+);
+
+tester.test(
+  'Object Property Orders',
+
+  'Note that the order of the properties of an object '+
+  'matter when they are being compared.',
+
+  function(){
+    var box  = {
+      width: 32,
+      height: 12
+    };
+    return box;
+  },
+
+  {height:12,width:32}
+);
+
+tester.test(
+  'Nesting Objects',
+
+  'You can also nest objects ',
+
+  function(){
+    var box  = {
+      width: 32,
+      height: 12,
+      contents: {
+        apples: 4,
+        oranges: 7
+      }
+    };
+    return box;
+  },
+
+  {
+    width: 32,
+    height: 12,
+    contents: {
+      apples: 4,
+      oranges: 7
+    }
+  }
+);
+
+</script>
+    </body>
+</html>
